@@ -8,9 +8,18 @@ namespace HW_3_CSPro
 {
     internal class User
     {
-        string Firstname { get; set; }
-        string Lastname { get; set; }
-        string Age { get; }
-        bool gender { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
+        public byte Age { get; }
+        public bool gender_is_male { get; set; }
+
+        public User()
+        {
+            Firstname = "Невідомо";
+            Lastname = "Невідомо";
+            Age = 0;
+            gender_is_male = true;
+        }
+
     }
 }
