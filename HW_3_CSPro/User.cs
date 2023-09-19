@@ -21,5 +21,13 @@ namespace HW_3_CSPro
             gender_is_male = true;
         }
 
+        public User (byte Age)
+        {
+            Firstname = "Невідомо";
+            Lastname = "Невідомо";
+            this.Age = Age;
+            gender_is_male = true;
+        }
+
     }
 }
