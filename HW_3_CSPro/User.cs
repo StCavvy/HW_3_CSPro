@@ -8,5 +8,9 @@ namespace HW_3_CSPro
 {
     internal class User
     {
+        string Firstname { get; set; }
+        string Lastname { get; set; }
+        string Age { get; }
+        bool gender { get; set; }
     }
 }
