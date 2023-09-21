@@ -28,13 +28,22 @@ namespace HW_3_CSPro
         {
             string input = string.Empty;
             bool check = false;
-            while (check == false)
+            byte tries = 3;
+            while (check == false || tries > 0)
             {
+                if (tries == 0)
+                {
+                    Console.WriteLine("Кількість спроб вичерпана, перезапустіть програму!");
+                    break;
+                }
+
                 Console.Write($"{requesting} : ");
                 input = Console.ReadLine();
                 if (Regex.IsMatch(input, @"\d"))
                 {
                     Console.WriteLine("Перевірте правильність вводу!");
+                    input = string.Empty;
+                    tries--;
                 }
                 else
                 {
