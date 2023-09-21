@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime.Intrinsics.X86;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace HW_3_CSPro
@@ -8,44 +9,40 @@ namespace HW_3_CSPro
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            bool check = false;
             User user1 = new User(20);
 
             user1.Gender = User.Genders.Female;
 
-            while (check == false)
-            {
-                Console.Write("Ім'я : ");
-                user1.Firstname = Console.ReadLine();
-                if (Regex.IsMatch(user1.Firstname, @"\d"))
-                {
-                    Console.WriteLine("Перевірте правильність вводу!");
-                }
-                else
-                {
-                    check = true;
-                }
-            }
+            user1.Firstname = Validate("Ім'я");
+            user1.Lastname = Validate("Прізвище");
 
-            check = false;
-
-            while (check == false)
-            {
-                Console.Write("Прізвище : ");
-                user1.Lastname = Console.ReadLine();
-                if (Regex.IsMatch(user1.Lastname, @"\d"))
-                {
-                    Console.WriteLine("Перевірте правильність вводу!");
-                }
-                else
-                {
-                    check = true;
-                }
-            }
+            user1.Gender = User.Genders.Male;
 
             Console.Clear();
 
             Console.WriteLine(user1.ToString());
+
+        }
+
+        public static string Validate(string requesting)
+        {
+            string input = string.Empty;
+            bool check = false;
+            while (check == false)
+            {
+                Console.Write($"{requesting} : ");
+                input = Console.ReadLine();
+                if (Regex.IsMatch(input, @"\d"))
+                {
+                    Console.WriteLine("Перевірте правильність вводу!");
+                }
+                else
+                {
+                    check = true;
+                }
+            }
+
+            return input;
         }
     }
 }
