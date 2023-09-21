@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Text.RegularExpressions;
 
 namespace HW_3_CSPro
 {
@@ -6,27 +7,45 @@ namespace HW_3_CSPro
     {
         static void Main(string[] args)
         {
-            //додаємо українську мову для коректного відображення в консолі
             Console.OutputEncoding = Encoding.UTF8;
-
-            //створюємо об'єкт класу User
+            bool check = false;
             User user1 = new User(20);
 
-            //задаємо стать
-            user1.gender_is_male = true;
+            user1.Gender = User.Genders.Female;
 
-            //реалізація вводу імені та прізвища
-            Console.Write("Ім'я : ");
-            user1.Firstname = Console.ReadLine();
+            while (check == false)
+            {
+                Console.Write("Ім'я : ");
+                user1.Firstname = Console.ReadLine();
+                if (Regex.IsMatch(user1.Firstname, @"\d"))
+                {
+                    Console.WriteLine("Перевірте правильність вводу!");
+                }
+                else
+                {
+                    check = true;
+                }
+            }
 
-            Console.Write("Прізвище : ");
-            user1.Lastname = Console.ReadLine();
+            check = false;
 
-            //чистимо консоль, аби не заважало
+            while (check == false)
+            {
+                Console.Write("Прізвище : ");
+                user1.Lastname = Console.ReadLine();
+                if (Regex.IsMatch(user1.Lastname, @"\d"))
+                {
+                    Console.WriteLine("Перевірте правильність вводу!");
+                }
+                else
+                {
+                    check = true;
+                }
+            }
+
             Console.Clear();
 
-            //визиваємо метод, який відобразить данні нашого юзера
-            user1.ShowUser();
+            Console.WriteLine(user1.ToString());
         }
     }
 }

@@ -12,39 +12,37 @@ namespace HW_3_CSPro
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public byte Age { get; }
-        public bool gender_is_male { get; set; }
+        public Genders Gender { get; set; }
 
 
-        //дефолтний конструктор
         public User()
         {
             Firstname = "Невідомо";
             Lastname = "Невідомо";
             Age = 0;
-            gender_is_male = true;
+            Gender = 0;
         }
 
 
-        //конструктор з можливістю вказати пропертю Age
         public User (byte Age)
         {
             Firstname = "Невідомо";
             Lastname = "Невідомо";
             this.Age = Age;
-            gender_is_male = true;
+            Gender = 0;
         }
         
 
-        //метод, який відображає дані про юзера
-        public void ShowUser()
+        public override string ToString()
         {
-            Console.WriteLine("Ім'я : {0}", Firstname);
-            Console.WriteLine("Прізвище : {0}", Lastname);
-            Console.WriteLine("Рік : {0}", Age);
-            Console.Write("Стать : ");
-            if (gender_is_male == true) { Console.WriteLine("чоловіча"); }
-            else { Console.WriteLine("жіноча"); }
+            string show = $"Ім'я : {Firstname} \nПрізвище : {Lastname} \nВік : {Age} \nСтать : {Gender} ";
+            return show ;
         }
 
+        public enum Genders
+        {
+            Male = 0,
+            Female = 1
+        }
     }
 }
