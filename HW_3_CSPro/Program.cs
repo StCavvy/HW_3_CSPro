@@ -8,16 +8,11 @@ namespace HW_3_CSPro
     {
         static void Main(string[] args)
         {
-            Console.OutputEncoding = Encoding.UTF8;
-            User user1 = new User(20);
+            User user1 = new User(7);
 
-            user1.Gender = User.Genders.Female;
-
-            user1.Firstname = Validate("Ім'я");
-            user1.Lastname = Validate("Прізвище");
-
-            user1.Gender = User.Genders.Male;
-
+            user1.Firstname = Validate("Name");
+            user1.Lastname = Validate("Lastname");
+            user1.Gender = User.SetGender();
             Console.Clear();
 
             Console.WriteLine(user1.ToString());
@@ -29,20 +24,14 @@ namespace HW_3_CSPro
             string input = string.Empty;
             bool check = false;
             byte tries = 3;
-            while (check == false || tries > 0)
+            while (check == false && tries > 0)
             {
-                if (tries == 0)
-                {
-                    Console.WriteLine("Кількість спроб вичерпана, перезапустіть програму!");
-                    break;
-                }
-
                 Console.Write($"{requesting} : ");
                 input = Console.ReadLine();
                 if (Regex.IsMatch(input, @"\d"))
                 {
-                    Console.WriteLine("Перевірте правильність вводу!");
-                    input = string.Empty;
+                    Console.WriteLine("Wrong input! Try again!");
+                    input = "Uknown";
                     tries--;
                 }
                 else
@@ -51,6 +40,10 @@ namespace HW_3_CSPro
                 }
             }
 
+            if (tries == 0)
+            {
+                Console.WriteLine("You have wasted all tries!");
+            }
             return input;
         }
     }

@@ -17,32 +17,69 @@ namespace HW_3_CSPro
 
         public User()
         {
-            Firstname = "Невідомо";
-            Lastname = "Невідомо";
+            Firstname = "Uknown";
+            Lastname = "Uknown";
             Age = 0;
             Gender = 0;
         }
 
 
-        public User (byte Age)
+        public User(byte Age)
         {
-            Firstname = "Невідомо";
-            Lastname = "Невідомо";
+            Firstname = "Uknown";
+            Lastname = "Uknown";
             this.Age = Age;
             Gender = 0;
         }
-        
+
 
         public override string ToString()
         {
-            string show = $"Ім'я : {Firstname} \nПрізвище : {Lastname} \nВік : {Age} \nСтать : {Gender} ";
-            return show ;
+            string AgeCheck = string.Empty;
+
+            if (Age > 10)
+            {
+                AgeCheck = $"I am {Age} years old. ";
+            }
+            else
+            {
+                AgeCheck = "I am baby. ";
+            }
+
+            string show = $"Hi, my name is {Firstname} and last name is {Lastname}. " + AgeCheck + $"I am {Gender}";
+
+            return show;
         }
 
-        public enum Genders
+        public static Genders SetGender()
         {
-            Male = 0,
-            Female = 1
+            byte tries = 3;
+            bool check = false;
+            int choise;
+
+            Console.WriteLine("Your gender : \n0 - Male   1 - Female");
+
+            while (tries > 0 && check == false ) {
+
+                if (tries == 0)
+                {
+                    Console.WriteLine("Кількість спроб вичерпана, перезапустіть програму!");
+                    break;
+                }
+
+                choise = Convert.ToByte(Console.ReadLine());
+
+                if (choise == 0) return Genders.Male;
+                else if (choise == 1) return Genders.Female;
+                else 
+                {
+                    Console.WriteLine("Wrong input! Try again!");
+                    tries--;
+                }
+            }
+
+            return Genders.Uknown_Entity;
+
         }
     }
 }
